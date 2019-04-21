@@ -1,5 +1,5 @@
 {
-  "name": "graphql-beginner",
+  "name": "ssb-graphql-beginner",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,9 +7,9 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["scuttlebutt", "graphql"],
+  "author": "mixmix",
+  "license": "MIT",
   "dependencies": {
     "apollo-server": "^2.4.8",
     "graphql": "^14.2.1",
