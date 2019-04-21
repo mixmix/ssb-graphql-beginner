@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.4.8",
-    "graphql": "^14.2.1"
+    "graphql": "^14.2.1",
+    "ssb-client": "^4.7.2",
+    "ssb-config": "^3.2.5"
   }
 }
