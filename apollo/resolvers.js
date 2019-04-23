@@ -1,7 +1,7 @@
 module.exports = {
   Query: {
-    hello: () => 'hello worlds!',
-    whoami
+    whoami,
+    me
   }
 }
 
@@ -12,4 +12,11 @@ function whoami (_, __, context) {
       resolve(data.id)
     })
   })
+}
+
+function me (_, __, context) {
+  return {
+    id: context.ssb.id,
+    name: 'mixmix'
+  }
 }
