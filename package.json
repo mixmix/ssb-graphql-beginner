@@ -4,16 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start-client": "budo client.js --open --live",
+    "start-server": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["scuttlebutt", "graphql"],
+  "keywords": [
+    "scuttlebutt",
+    "graphql"
+  ],
   "author": "mixmix",
   "license": "MIT",
   "dependencies": {
+    "apollo-cache-inmemory": "^1.5.1",
+    "apollo-client": "^2.5.1",
+    "apollo-link-http": "^1.5.14",
     "apollo-server": "^2.4.8",
+    "budo": "^11.6.2",
     "graphql": "^14.2.1",
+    "graphql-tag": "^2.10.1",
     "ssb-client": "^4.7.2",
-    "ssb-config": "^3.2.5"
+    "ssb-config": "^3.2.5",
+    "yo-yo": "^1.4.1"
   }
 }
