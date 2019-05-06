@@ -2,14 +2,16 @@ const { gql } = require('apollo-server')
 
 const typeDefs = gql`
   type Query {
-    whoami: String
-    me: User
+    me: Peer
+
+    getPeer(id: String): Peer
   }
 
-  type User {
+  type Peer {
     id: String
     name: String
-    seq: String
+    seq: Int,
+    follows: [Peer]
   }
 `
 

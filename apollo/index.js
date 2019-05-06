@@ -7,6 +7,7 @@ module.exports = function Apollo (ssbServer) {
     typeDefs,
     context: {
       ssb: ssbServer,
+      ssbp: promisify(ssbServer),
       myId: ssbServer.id
     },
     resolvers
@@ -18,4 +19,24 @@ module.exports = function Apollo (ssbServer) {
     })
 
   return apollo
+}
+
+function promisify (ssbServer) {
+  return {
+    latestSequence: toPromise(ssbServer.latestSequence),
+    about: {
+      socialValue: toPromise(ssbServer.about.socialValue)
+    }
+  }
+}
+
+function toPromise (nodeback) {
+  return function () {
+    return new Promise((resolve, reject) => {
+      nodeback.call(this, ...arguments, (err, data) => {
+        if (err) reject(err)
+        else resolve(data)
+      })
+    })
+  }
 }

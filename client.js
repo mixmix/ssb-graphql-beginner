@@ -4,12 +4,17 @@ const { createHttpLink } = require('apollo-link-http')
 const gql = require('graphql-tag').default
 const yo = require('yo-yo')
 
+// set up client connection
+const client = new ApolloClient({
+  link: createHttpLink({ uri: 'http://localhost:4000' }),
+  cache: new InMemoryCache()
+})
+
 // view elements
-const el = yo`
+const view = yo`
   <h1>Loading...</h1>
 `
-document.body.appendChild(el)
-function update (data) {
+view.update = function (data) {
   const results = yo`
     <div>
       <p>Here's your data!</p>
@@ -18,14 +23,9 @@ ${JSON.stringify(data, null, 2)}
       </code></pre>
     </div>
   `
-  yo.update(el, results)
+  yo.update(this, results)
 }
-
-// set up client connection
-const client = new ApolloClient({
-  link: createHttpLink({ uri: 'http://localhost:4000' }),
-  cache: new InMemoryCache()
-})
+document.body.appendChild(view)
 
 // run query, then update views
 const query = gql`
@@ -34,7 +34,14 @@ const query = gql`
       id
       name
     }
+    getPeer(id: "@9aHOVuS5Y8/BOQRnQeuvqcycgKwrW7SXQEzPsV6pI10=.ed25519") {
+      id
+      name
+      follows {
+        name
+      }
+    }
   }
 `
 client.query({ query })
-  .then(res => update(res.data))
+  .then(res => view.update(res.data))
